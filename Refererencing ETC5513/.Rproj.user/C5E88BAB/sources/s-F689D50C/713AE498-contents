@@ -1,0 +1,87 @@
+---
+title: "Referencing examples"
+output:
+  bookdown::html_document2: default
+  bookdown::pdf_document2: default
+keep_md: true  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.align = "center", fig.path = "Figures/")
+```
+
+```{r}
+# Loading required libraries
+library(tidyverse)
+library(palmerpenguins)
+library(bookdown)
+library(knitr)
+#library(ggmap)
+
+
+```
+
+# Data set
+
+```{r dat}
+
+head(penguins)
+```
+```{r out.width = '70%', echo = FALSE}
+knitr::include_graphics("images/penguins.png")
+```
+
+# Referencing tables 
+
+We generate Table \@ref(tab:species) using the *kable* package  
+
+```{r species, cache = TRUE}
+
+Table = penguins %>%
+  count(species)
+
+knitr::kable(
+Table, booktabs = TRUE,
+  caption = 'Individual number of penguins studied in each species')
+
+```
+
+ In Table \@ref(tab:species) the first number of penguins studied in each of the groups is diplayed
+
+
+# Referencing figures
+
+```{r visualizingpenguins, fig.cap = "Relationship between flipper length and body mass", warning = FALSE}
+
+ggplot(penguins, aes( x= flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(shape = species, color = species))
+
+
+```
+
+
+```{r distribution, fig.cap = "Distribution of flippers lenght accross different penguin species", warning = FALSE}
+ggplot(penguins, aes(flipper_length_mm, fill = species)) +
+  geom_histogram()
+```
+
+The relationship between flipper length and body mass is displayed in  Figure \@ref(fig:visualizingpenguins).
+
+In Figure \@ref(fig:distribution) we can observed differences in the distribution of flipper length across three different types of penguins in Antarctica. 
+
+
+# Referencing report sections {#refsection}
+
+In Section \@ref(refsection) we have learned to reference a section 
+
+
+
+
+
+
+
+
+
+
+
+

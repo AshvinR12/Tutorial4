@@ -1,0 +1,3 @@
+"0",""
+"0","head(penguins) %>%"
+"0","  kable(caption = ""Summary of the data about penguins collected in the Palmer research station in the Antarctic peninsula"")"

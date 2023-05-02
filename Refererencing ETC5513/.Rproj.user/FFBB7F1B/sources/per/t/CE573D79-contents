@@ -1,0 +1,98 @@
+---
+title: "Referencing examples"
+output:
+  bookdown::html_document2: default
+  bookdown::pdf_document2: default
+keep_md: true  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE,
+                      fig.align = "center",
+                      fig.path = "Figures/")
+```
+
+```{r , message = FALSE, warning = FALSE}
+# Loading required libraries
+library(tidyverse)
+library(palmerpenguins)
+library(bookdown)
+library(knitr)
+#library(ggmap)
+
+
+```
+
+# Data set
+
+In Table \@ref(tab:dat) we can observe the different measurements that were collected for three different types of penguins in the Antarctic peninsula.
+
+```{r dat}
+
+head(penguins) %>%
+  kable(caption = "Summary of the data about penguins collected in the Palmer research station in the Antarctic peninsula")
+```
+```{r penguintypes, out.width = '70%', echo = FALSE, fig.cap = "Types of penguins found in the Antarctic Palmer research station"}
+knitr::include_graphics("images/penguins.png")
+```
+
+Figure \@ref(fig:penguintypes) depicts the three different types of penguins found near the Antarctic Palmer research station.
+
+# Referencing tables 
+
+We generate Table \@ref(tab:species) using the *kable* package  
+
+```{r species, cache = TRUE}
+
+Table = penguins %>%
+  count(species)
+
+knitr::kable(
+Table, booktabs = TRUE,
+  caption = 'Describes the individual number of penguins studied for each species')
+
+```
+
+Table \@ref(tab:species) displays the number of penguins surveyed for each of the species.
+
+# Referencing figures
+
+```{r visualizingpenguins, fig.cap = "Relationship between flipper length and body mass", warning = FALSE}
+
+ggplot(penguins, aes( x= flipper_length_mm,
+                      y = body_mass_g)
+       ) +
+  geom_point(aes(shape = species,
+                 color = species))
+
+
+```
+
+
+```{r distribution, fig.cap = "Distribution of flippers lenght accross different penguin species", warning = FALSE}
+ggplot(penguins, aes(flipper_length_mm,
+                     fill = species)
+       ) +
+  geom_histogram()
+```
+
+The relationship between flipper length and body mass is displayed in  Figure \@ref(fig:visualizingpenguins).In Figure \@ref(fig:distribution) we can observed differences in the distribution of flipper length across three different types of penguins in Antarctica. 
+
+
+# Referencing report sections {#refsection}
+
+In Section \@ref(refsection) we have learned to reference a section 
+
+
+
+
+
+
+
+
+
+
+
+
